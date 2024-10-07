@@ -19,6 +19,9 @@ public class Password : ValueObject
         Hash = Hashing(text);
     }
 
+    public bool Challenge(string plainTextPassword)
+        => Verify(Hash, plainTextPassword);
+
     public string Hash { get; set; } = string.Empty;
     public string ResetCode { get; } = Guid.NewGuid().ToString("N")[..8].ToUpper();
 
